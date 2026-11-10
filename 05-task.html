@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 05</title>
+</head>
+
+<body>
+    <script>
+        class Circle {
+            constructor(radius) {
+                this.radius = radius;
+            }
+
+            getArea() {
+                return Math.PI * Math.pow(this.radius, 2);
+            }
+        }
+
+        class Cone extends Circle {
+            constructor(radius, height) {
+                super(radius);
+                this.height = height;
+            }
+            getSlantHeight() {
+                return Math.sqrt(Math.pow(this.radius, 2) + Math.pow(this.height, 2));
+            }
+
+            getVolume() {
+                return (super.getArea() * this.height) / 3;
+            }
+
+            getArea() {
+                const baseArea = super.getArea();
+                const lateralArea = Math.PI * this.radius * this.getSlantHeight();
+                return baseArea + lateralArea;
+            }
+        }
+
+        let cone = new Cone(3, 4);
+        console.log("Радиус:", cone.radius);
+        console.log("Высота:", cone.height);
+        console.log("Объем:", cone.getVolume());
+        console.log("Площадь полной поверхности:", cone.getArea());
+    </script>
+</body>
+
+</html>
